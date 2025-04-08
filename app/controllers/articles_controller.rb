@@ -10,4 +10,9 @@ class ArticlesController < ApplicationController
       end
     end
   end
+
+  def index
+    # index action which expects index.html.erb under views/articles folder
+    @articles = Article.all
+  end
 end
