@@ -1,0 +1,10 @@
+<div style="display:flex; flex-direction:column; align-items:center; height:100vh; justify-content:center;">
+  <h1>Welcome to Beta Blogs.</h1>
+  <button id="all-articles-btn">Show All Articles</button>
+</div>
+
+<script>
+  document.getElementById("all-articles-btn").addEventListener("click", function() {
+    window.location.href = "<%= articles_path %>";
+  });
+</script>
