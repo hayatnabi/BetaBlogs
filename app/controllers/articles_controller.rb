@@ -15,4 +15,21 @@ class ArticlesController < ApplicationController
     # index action which expects index.html.erb under views/articles folder
     @articles = Article.all
   end
+
+  def new
+    # new action expects new.html.erb file under views/acticles folder as RoR convention of MVC pattern
+    @article = Article.new
+  end
+
+  def create
+    # using require and permit because rails provide a feature of strong parameters which means only those attributes / keys will be allowed that are permitted
+    @article = Article.new(params.require(:article).permit(:title, :description))
+    if @article.save
+      flash[:notice] = "Article created successfully!"
+      redirect_to @article # shorthand syntax for redirecting to the article_path
+    else
+      # handle if save is failed.
+      render :new, status: :unprocessable_entity  # or render 'new'
+    end
+  end
 end

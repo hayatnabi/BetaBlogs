@@ -19,3 +19,12 @@
         <% end %>
     </tb>
 </table>
+
+<br><br><br>
+<button id="add-article-btn">Add New Article</button>
+
+<script>
+  document.getElementById("add-article-btn").addEventListener("click", function() {
+    window.location.href = "<%= new_article_path %>";
+  });
+</script>
