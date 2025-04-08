@@ -1,0 +1,30 @@
+<h1>Update Article</h1>
+
+<% if @article.errors.any? %>
+  <h3>Error while article being saved, here are some issues that encountered:</h3>
+  <ul style="color: red;">
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @article, local: true) do |f| %>
+
+    <p>
+        <%= f.label :title %>
+        <br>
+        <%= f.text_field :title %>
+    </p>
+
+    <p>
+        <%= f.label :description %>
+        <br>
+        <%= f.text_area :description %>
+    </p>
+
+     <p>
+        <%= f.submit %>
+    </p>
+
+<% end %>

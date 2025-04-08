@@ -21,6 +21,11 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    # edit action expects edit.html.erb file under views/acticles folder as RoR convention of MVC pattern
+    @article = Article.find(params[:id])
+  end
+
   def create
     # using require and permit because rails provide a feature of strong parameters which means only those attributes / keys will be allowed that are permitted
     @article = Article.new(params.require(:article).permit(:title, :description))
@@ -30,6 +35,17 @@ class ArticlesController < ApplicationController
     else
       # handle if save is failed.
       render :new, status: :unprocessable_entity  # or render 'new'
+    end
+  end
+
+  def update
+    # update logic here
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
+      flash[:notice] = "Article was updated successfully!"
+      redirect_to @article
+    else
+      render :edit, status: :unprocessable_entity # or render 'edit'
     end
   end
 end
