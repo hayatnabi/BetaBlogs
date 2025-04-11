@@ -112,25 +112,25 @@ body {
     }
 }
 
-.btn-create-blog {
+#btn-create-blog {
     background-color: #6b57ff;
     color: white;
     font-weight: 500;
 }
 
 /* #DAD5FF */
-.btn-create-blog:hover {
+#btn-create-blog:hover {
     background-color: green;
     color: #5a4dcf;
 }
 
-.btn-filled {
+#btn-show-articles {
     background-color: white;
     color: black;
     font-weight: 500;
 }
 
-.btn-filled:hover {
+#btn-show-articles:hover {
     background-color: black;
     color: white;
 }
