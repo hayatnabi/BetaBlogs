@@ -1,28 +1,27 @@
 <% if @article.errors.any? %>
-  <h3>Error while article being saved, here are some issues that encountered:</h3>
-  <ul style="color: red;">
-    <% @article.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <div class="alert alert-danger alert-dismissible fade show border border-danger-subtle shadow-sm p-4" role="alert">
+    <h5 class="fw-bold mb-3">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      There were some problems saving your article:
+    </h5>
+    <ul class="mb-0 ps-3">
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 <% end %>
-
-<%= form_with(model: @article, local: true) do |f| %>
-
-    <p>
-        <%= f.label :title %>
-        <br>
-        <%= f.text_field :title %>
-    </p>
-
-    <p>
-        <%= f.label :description %>
-        <br>
-        <%= f.text_area :description %>
-    </p>
-
-     <p>
-        <%= f.submit %>
-    </p>
-
+<%= form_with(model: @article, local: true, html: { class: "p-4 border rounded shadow-sm bg-light" }) do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :description, class: "form-label" %>
+    <%= f.text_area :description, class: "form-control", rows: 5 %>
+  </div>
+  <div>
+    <%= f.submit "Save Article", class: "btn btn-primary" %>
+  </div>
 <% end %>

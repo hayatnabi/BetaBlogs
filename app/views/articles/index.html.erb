@@ -1,35 +1,41 @@
-<h1>Articles Listing</h1>
-
-<table>
-    <th>
+<div class="container my-5">
+  <h1 class="text-center mb-4">Articles Listing</h1>
+  <table class="table table-striped table-hover table-bordered shadow-sm">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="3" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |article| %>
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th colspan="3">Actions</th>
+          <td class="text-center"><%= article.id %></td>
+          <td class="text-start"><%= article.title %></td>
+          <td class="text-start"><%= article.description %></td>
+          <td class="text-center">
+            <%= link_to 'Show', article_path(article), class: "btn btn-sm btn-outline-primary" %>
+          </td>
+          <td class="text-center">
+            <%= link_to 'Edit', edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %>
+          </td>
+          <td class="text-center">
+            <%= link_to 'Delete', article_path(article),
+                        data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this article?' },
+                        class: "btn btn-sm btn-outline-danger" %>
+          </td>
         </tr>
-    </th>
-
-    <tb>
-        <% @articles.each do |article| %>
-            <tr>
-                <td><%= article.title %></td>
-                <td><%= article.description %></td>
-                <td><%= link_to 'Show', article_path(article) %></td>
-                <td><%= link_to 'Edit', edit_article_path(article.id) %></td>  
-                <td> <%= link_to 'Delete', article_path(article.id),
-                      data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this article?' },
-                      class: "delete-button" %>
-                </td>
-            </tr>
-        <% end %>
-    </tb>
-</table>
-
-<br><br><br>
-<button id="add-article-btn">Add New Article</button>
-
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center mt-4">
+    <button id="add-article-btn" class="btn btn-success btn-lg shadow">Add New Article</button>
+  </div>
+</div>
 <script>
-  document.getElementById("add-article-btn").addEventListener("click", function() {
+  document.getElementById("add-article-btn").addEventListener("click", function () {
     window.location.href = "<%= new_article_path %>";
   });
 </script>

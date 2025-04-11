@@ -149,3 +149,62 @@ body {
     background-repeat: no-repeat;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+/* css for forms */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.alert-danger {
+    max-width: 600px;
+    margin: 1rem auto;
+    padding: 1rem;
+    border-left: 5px solid #dc3545;
+}
+
+form .btn {
+    width: 100%;
+}
+
+/* Custom Styling for tables and headers */
+table {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+th,
+td {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.btn {
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* css for showing article page */
+
+.card {
+    border-radius: 1rem;
+}
+
+h1 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.text-muted {
+    font-size: 1.1rem;
+}
