@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
   def create
     # using require and permit because rails provide a feature of strong parameters which means only those attributes / keys will be allowed that are permitted
     @article = Article.new(set_article_params)
+    @article.user = User.first # hard coding user= for now, will remove later after authentication
     if @article.save
       flash[:notice] = "Article created successfully!"
       redirect_to @article # shorthand syntax for redirecting to the article_path
