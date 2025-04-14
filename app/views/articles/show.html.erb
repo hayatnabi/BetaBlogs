@@ -1,6 +1,7 @@
 <div class="container my-5">
   <div class="card shadow-sm p-4">
     <h1 class="text-center mb-4">Article Details</h1>
+    <p><strong>Author:</strong> <span class="text-muted"><%= @article.user.username if @article.user %></span></p>
     <p><strong>Title:</strong> <span class="text-muted"><%= @article.title %></span></p>
     <div><strong>Description:</strong> <span class="text-muted"><%= simple_format(@article.description) %></span></div>
     <div class="mt-4 d-flex align-items-center gap-2 flex-wrap">

@@ -15,8 +15,9 @@
           <td class="text-center"><%= article.id %></td>
           <td class="text-start"><%= article.title %></td>
           <td class="text-start"><%= truncate(article.description, length: 50) %><br>
-            Created <%= time_ago_in_words(article.created_at)%> ago, 
-            Edited <%= time_ago_in_words(article.updated_at)%> ago</td>
+            Created <i><%= time_ago_in_words(article.created_at)%></i> ago, 
+            Edited <i><%= time_ago_in_words(article.updated_at)%></i> ago <b>by <%= article.user.username if article.user %></b>
+          </td>
           <td class="text-center">
             <%= link_to 'View', article_path(article), class: "btn btn-sm btn-outline-primary" %>
           </td>
