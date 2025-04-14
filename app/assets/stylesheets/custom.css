@@ -208,3 +208,9 @@ h1 {
 .text-muted {
     font-size: 1.1rem;
 }
+
+form.form-inline {
+    display: inline-block !important;
+    margin: 0;
+    padding: 0;
+}
