@@ -1,0 +1,18 @@
+<%= render "shared/errors", obj: @user %>
+<%= form_with(model: @user, local: true, html: { class: "p-4 border rounded shadow-sm bg-light" }) do |f| %>
+  <div class="mb-3">
+    <%= f.label :username, class: "form-label" %>
+    <%= f.text_field :username, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control", rows: 5 %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control", rows: 5 %>
+  </div>
+  <div>
+    <%= f.submit "Signup", class: "btn btn-success" %>
+  </div>
+<% end %>

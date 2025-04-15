@@ -1,4 +1,4 @@
-<%= render "shared/errors"%>
+<%= render "shared/errors", obj: @article %>
 <%= form_with(model: @article, local: true, html: { class: "p-4 border rounded shadow-sm bg-light" }) do |f| %>
   <div class="mb-3">
     <%= f.label :title, class: "form-label" %>
