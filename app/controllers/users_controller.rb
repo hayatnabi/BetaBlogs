@@ -4,6 +4,21 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    # expects edit.html.erb file under views section
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "Your account information has been updated successfully."
+      redirect_to articles_path # for testing purpose now
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if (@user.save)

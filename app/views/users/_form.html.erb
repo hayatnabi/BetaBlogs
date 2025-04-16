@@ -5,7 +5,10 @@
     <div class="col-md-6">
       <div class="card shadow-lg rounded-4">
         <div class="card-body p-4">
-          <h3 class="card-title mb-4 text-center">Create an Account</h3>
+          <%# <h3 class="card-title mb-4 text-center">Create an Account</h3> %>
+          <h3 class="card-title mb-4 text-center">
+            <%= @user.new_record? ? "Create an Account" : "Update Your Account" %>
+          </h3>
           <%= form_with model: @user, local: true do |f| %>
             <div class="mb-3">
               <%= f.label :username, class: "form-label" %>
@@ -25,12 +28,14 @@
               </div>
             </div>
             <div class="d-grid">
-              <%= f.submit "Sign Up", class: "btn btn-primary btn-lg" %>
+              <%= f.submit(@user.new_record? ? "Sign Up" : "Update Account", class: "btn btn-primary btn-lg") %>
             </div>
           <% end %>
-          <div class="text-center mt-3">
-            <small>Already have an account? <a href="#">Login</a></small>
-          </div>
+          <% if @user.new_record? %>
+            <div class="text-center mt-3">
+              <small>Already have an account? <a href="#">Login</a></small>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
