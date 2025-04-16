@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get "signup" => "users#new"
   resources :users, except: [:new]
   resources :articles # , only: [:show, :index, :new, :create, :edit, :update, :destroy]
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  delete "logout" => "sessions#destroy"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
