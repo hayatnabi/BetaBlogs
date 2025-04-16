@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  def show
+    # expects show.html.erb file under views section
+    @user = User.find(params[:id])
+    @articles = @user.articles
+  end
+
   def new
     # expects new.html.erb file under views section
     @user = User.new
@@ -22,7 +28,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if (@user.save)
-      flash[:notice] = "Welcome to  the Beta Blogs, " + @user.username << "! Your account has been created successyfully. Enjoy Blogging :)"
+      flash[:notice] = "Welcome to  the Beta Blogs, " + @user.username << "!\nYour account has been created successfully. Enjoy Seamless Blogging Experience :)"
       redirect_to articles_path # for now...
     else
       render :new, status: :unprocessable_entity
