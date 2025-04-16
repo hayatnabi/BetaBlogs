@@ -60,10 +60,6 @@
             <span class="fs-sm">workflow</span>
           </div>
           <div style="display: flex; gap: 12px; margin-top: 20px; width: fit-content; margin-left: auto; margin-right: auto;">
-            <a href="articles" class="btn rounded px-4 py-2" id="btn-show-articles">
-              <i class="fas fa-eye"></i>
-              Show Articles
-            </a>
             <% if !logged_in? %>
               <a href="/signup" class="btn btn-outline-white d-flex align-items-center justify-content-center gap-2"
      style="font-size: 16px;" id="btn-outline-white">
@@ -74,6 +70,11 @@
      style="font-size: 16px;">
                 <i class="fas fa-globe"></i>
                 Login
+              </a>
+            <% else %>
+              <a href="articles" class="btn rounded px-4 py-2" id="btn-show-articles">
+                <i class="fas fa-eye"></i>
+                Show Articles
               </a>
             <% end %>
           </div>
@@ -89,13 +90,15 @@
               <p class="col-md-8 fs-4 text-white">Effortless blog creation, right at your fingertips.<br>
                 Start
                 sharing your thoughts today!</p>
-              <div style="display: flex; gap: 12px; margin-top: 20px;">
-                <a href="articles/new" class="btn px-4 py-2 text-white" id="btn-create-blog"
+              <% if logged_in? %>
+                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                  <a href="articles/new" class="btn px-4 py-2 text-white" id="btn-create-blog"
      style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; cursor: pointer;">
-                  <i class="fas fa-plus"></i>
-                  Create your first blog
-                </a>
-              </div>
+                    <i class="fas fa-plus"></i>
+                    Create your first blog
+                  </a>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
