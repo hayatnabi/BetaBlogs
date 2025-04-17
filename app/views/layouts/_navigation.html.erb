@@ -9,9 +9,10 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Hey, <%= current_user.username %>
+              Hey, <%= current_user.username %><%= " (Admin)" if current_user.admin? %>
             </a>
             <ul class="dropdown-menu">
+              <%= link_to "Create Blog", new_article_path, class: "dropdown-item" %>
               <%= link_to "Open Profile", user_path(current_user), class: "dropdown-item" %>
               <li><hr class="dropdown-divider"></li>
               <%= button_to "Delete Profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "All of your data will be removed. Are you sure you want to delete your profile?"} %>

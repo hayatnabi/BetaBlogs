@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @articles = @user.articles
   end
 
+  def index
+    @users = User.all
+  end
+
   def new
     # expects new.html.erb file under views section
     @user = User.new
@@ -39,9 +43,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil
-    flash[:notice] = "Your account has been deleted successfully. We are sorry to see you at this stage and hope you will come back again :)"
-    redirect_to root_path
+    if current_user.admin?
+      flash[:notice] = "Account deleted successfully!"
+      redirect_to @user
+    else
+      flash[:notice] = "Your account has been deleted successfully. We are sorry to see you at this stage and hope you will come back again :)"
+      redirect_to root_path
+    end
+    session[:user_id] = nil if @user == current_user
   end
 
   private
@@ -55,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user
+    if current_user != @user && !current_user.admin?
       flash[:alert] = "You can only perform this action on your own account."
       redirect_to @user
     end

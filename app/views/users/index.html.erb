@@ -1,0 +1,44 @@
+<h5 class="d-flex justify-content-center align-items-center mt-4">Users List</h5>
+<div class="container my-1.5">
+  <table class="table table-striped table-hover table-bordered shadow-sm mt-2">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th colspan="3" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="text-center"><%= user.id %></td>
+          <td class="text-start"><%= user.username %></td>
+          <td class="text-start"><%= truncate(user.email, length: 50) %><br>
+            Joined <i><%= time_ago_in_words(user.created_at)%></i> ago, 
+            <i><%= pluralize(user.articles.count, "article") %></i>
+          </td>
+          <td class="text-center">
+            <%= link_to 'View Profile', user, class: "btn btn-sm btn-outline-primary" %>
+          </td>
+          <% if logged_in? %>
+            <td class="text-center">
+              <% if user == current_user %>
+                <%= link_to 'Edit Profile', edit_user_path(user), class: "btn btn-sm btn-outline-secondary" %>
+              <% end %>
+            </td>
+            <% if current_user.admin? %>
+              <td class="text-center">
+                <%= button_to 'Delete User', user_path(user),
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete this user?' },
+                class: "btn btn-sm btn-outline-danger w-auto px-3",
+                form: { class: 'form-inline m-0 p-0' } %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
