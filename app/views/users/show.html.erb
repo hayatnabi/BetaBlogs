@@ -1,11 +1,17 @@
 <div class="d-flex justify-content-center">
   <div class="w-100 text-center mt-4" style="max-width: 1000px;">
-    <h5 class="p-2 text-primary">Welcome, <%= @user.username %>!</h5>
+    <% if logged_in? && @user == current_user %>
+      <h5 class="p-2 text-primary">Welcome, <%= @user.username %>!</h5>
+    <% else %>
+      <h5 class="p-2 text-primary"><%= @user.username %>'s Profile</h5>
+    <% end %>
     <%= gravatar_for @user, size: 100 %>
-    <div class="text-center mt-4">
-      <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %>
-    </div>
-    <h3 class="text-center mt-5">Your Articles</h3>
+    <% if logged_in? && @user == current_user %>
+      <div class="text-center mt-4">
+        <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    <% end %>
+    <h3 class="text-center mt-5">Articles</h3>
     <%= render 'articles/article' %>
   </div>
 </div>
