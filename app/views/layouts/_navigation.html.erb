@@ -6,7 +6,18 @@
     </div>
     <div class="ms-auto d-flex align-items-center gap-3">
       <% if logged_in? %>
-        <span class="navbar-text">Hey, <%= current_user.username %></span>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Hey, <%= current_user.username %>
+            </a>
+            <ul class="dropdown-menu">
+              <%= link_to "Open Profile", user_path(current_user), class: "dropdown-item" %>
+              <li><hr class="dropdown-divider"></li>
+              <%= button_to "Delete Profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "All of your data will be removed. Are you sure you want to delete your profile?"} %>
+            </ul>
+          </li>
+        </ul>
         <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-danger" %>
       <% end %>
     </div>
