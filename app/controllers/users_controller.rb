@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:show, :edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :restrict_redirect_signup, only: [:new, :create]
 
   def show
     # expects show.html.erb file under views section
@@ -67,6 +68,13 @@ class UsersController < ApplicationController
     if current_user != @user && !current_user.admin?
       flash[:alert] = "You can only perform this action on your own account."
       redirect_to @user
+    end
+  end
+
+  def restrict_redirect_signup
+    if logged_in?
+      flash[:warning] = "You need to logout from the system before performing this action."
+      redirect_to current_user
     end
   end
 end
