@@ -15,7 +15,8 @@
               <%= link_to "Create Blog", new_article_path, class: "dropdown-item" %>
               <%= link_to "Open Profile", user_path(current_user), class: "dropdown-item" %>
               <li><hr class="dropdown-divider"></li>
-              <%= button_to "Delete Profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "All of your data will be removed. Are you sure you want to delete your profile?"} %>
+              <button class="dropdown-item text-danger" onclick="confirmDeletion(event, '<%= user_path(current_user) %>', 'All of your data will be removed. Are you sure you want to delete your profile?')">Delete Profile</button>
+              <%= render "shared/confirm_deletion_script" %>
             </ul>
           </li>
         </ul>

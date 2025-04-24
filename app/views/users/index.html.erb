@@ -29,11 +29,8 @@
             </td>
             <% if current_user.admin? %>
               <td class="text-center">
-                <%= button_to 'Delete User', user_path(user),
-                method: :delete,
-                data: { confirm: 'Are you sure you want to delete this user?' },
-                class: "btn btn-sm btn-outline-danger w-auto px-3",
-                form: { class: 'form-inline m-0 p-0' } %>
+                <button class="btn btn-sm btn-outline-danger w-auto px-3" onclick="confirmDeletion(event, '<%= user_path(user) %>', 'Are you sure you want to delete?')">Delete User</button>
+                <%= render "shared/confirm_deletion_script" %>
               </td>
             <% end %>
           <% end %>

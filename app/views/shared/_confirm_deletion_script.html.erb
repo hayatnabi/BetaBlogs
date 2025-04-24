@@ -1,0 +1,28 @@
+<script>
+  function confirmDeletion(event, url, message) {
+    if (confirm(message)) {
+      // Create and submit a form with DELETE method
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = url;
+
+      const methodInput = document.createElement('input');
+      methodInput.type = 'hidden';
+      methodInput.name = '_method';
+      methodInput.value = 'delete';
+
+      const csrf = document.querySelector("meta[name='csrf-token']").content;
+      const csrfInput = document.createElement('input');
+      csrfInput.type = 'hidden';
+      csrfInput.name = 'authenticity_token';
+      csrfInput.value = csrf;
+
+      form.appendChild(methodInput);
+      form.appendChild(csrfInput);
+      document.body.appendChild(form);
+      form.submit();
+    } else {
+      event.preventDefault();
+    }
+  }
+</script>

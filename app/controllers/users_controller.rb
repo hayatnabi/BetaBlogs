@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id # creating login session as soon as the new user sign ups
       flash[:notice] = "Welcome to  the Beta Blogs, " + @user.username << "!\nYour account has been created successfully. Enjoy Seamless Blogging Experience :)"
-      redirect_to @user # for now...
+      redirect_to @user
     else
       render :new, status: :unprocessable_entity
     end
