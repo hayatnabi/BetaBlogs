@@ -1,36 +1,40 @@
 <div class="container my-1.5">
-  <table class="table table-striped table-hover table-bordered shadow-sm mt-2">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th colspan="3" class="text-center">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @articles.each do |article| %>
+  <% if @articles.count > 0%>
+    <table class="table table-striped table-hover table-bordered shadow-sm mt-2">
+      <thead class="table-dark">
         <tr>
-          <td class="text-center"><%= article.id %></td>
-          <td class="text-start"><%= article.title %></td>
-          <td class="text-start"><%= truncate(article.description, length: 50) %><br>
-            Created <i><%= time_ago_in_words(article.created_at)%></i> ago, 
-            Edited <i><%= time_ago_in_words(article.updated_at)%></i> ago by <%= link_to article.user.username, user_path(article.user) if article.user %>
-          </td>
-          <td class="text-center">
-            <%= link_to 'View', article_path(article), class: "btn btn-sm btn-outline-primary" %>
-          </td>
-          <% if logged_in? && (article.user == current_user || current_user.admin?) %>
-            <td class="text-center">
-              <%= link_to 'Edit', edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %>
-            </td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-danger w-auto px-3" onclick="confirmDeletion(event, '<%= article_path(article) %>', 'Are you sure you want to delete?')">Delete</button>
-              <%= render "shared/confirm_deletion_script" %>
-            </td>
-          <% end %>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th colspan="3" class="text-center">Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @articles.each do |article| %>
+          <tr>
+            <td class="text-center"><%= article.id %></td>
+            <td class="text-start"><%= article.title %></td>
+            <td class="text-start"><%= truncate(article.description, length: 50) %><br>
+              Created <i><%= time_ago_in_words(article.created_at)%></i> ago, 
+              Edited <i><%= time_ago_in_words(article.updated_at)%></i> ago by <%= link_to article.user.username, user_path(article.user) if article.user %>
+            </td>
+            <td class="text-center">
+              <%= link_to 'View', article_path(article), class: "btn btn-sm btn-outline-primary" %>
+            </td>
+            <% if logged_in? && (article.user == current_user || current_user.admin?) %>
+              <td class="text-center">
+                <%= link_to 'Edit', edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-danger w-auto px-3" onclick="confirmDeletion(event, '<%= article_path(article) %>', 'Are you sure you want to delete?')">Delete</button>
+                <%= render "shared/confirm_deletion_script" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No articles added yet.</p>
+  <% end %>
 </div>
