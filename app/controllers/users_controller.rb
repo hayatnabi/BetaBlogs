@@ -16,16 +16,6 @@ class UsersController < ApplicationController
   def new
     # expects new.html.erb file under views section
     @user = User.new
-
-    # Check if the admin already exists to prevent duplicate creation
-    unless User.exists?(email: "hayatnabi@carecloud.com")
-      User.create!(
-        username: "hayatnabi",
-        email: "hayatnabi@carecloud.com",
-        password: "admin", # you must set password, not password_digest directly
-        admin: true,
-      )
-    end
   end
 
   def edit
